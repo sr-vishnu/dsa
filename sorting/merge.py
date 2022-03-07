@@ -1,8 +1,8 @@
-"""
-Function performs merging of two lists
-"""
 
 def merge(listOne,listTwo):
+    """
+    Function performs merging of two lists
+    """
     mergedList = []
 
     while(listOne and listTwo):
@@ -18,17 +18,44 @@ def merge(listOne,listTwo):
     else:
         return mergedList + listTwo
 
+
+def sort(_list):
+    if(len(_list)) == 1:
+        return _list
+    elif(len(_list)) == 2:
+        if(_list[0] > _list[1]):
+            return [_list[1],_list[0]]
+        else:
+            return _list
+    else:
+        left = 0
+        mid = len(_list)//2
+        right = len(_list) - 1
+
+        leftSorted = sort(_list[left:mid+1])
+        rightSorted = sort(_list[mid+1:])
+        return merge(leftSorted,rightSorted)
+
 print(
-    merge(
-        [1,3,5,7,9],
-        [2,4,6,8,10]
+    sort(
+        [5,4,3,2,1]
     )
 )
 
+print(
+    sort(
+        [5,4,3,2]
+    )
+)
 
 print(
-    merge(
-        [1,2,3],
-        [4,5,6]
+    sort(
+        [5,4,3,2,1,1,1,1,3,4,5,6,100,-1,34,0]
+    )
+)
+
+print(
+    sort(
+        [1]*1000000
     )
 )
